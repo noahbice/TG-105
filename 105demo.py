@@ -34,8 +34,6 @@ texts = np.linspace(1, num_students, num_students).astype('int')
 
 theta = np.linspace(0,2*np.pi, 100)
 displacement = 0.
-displacement_x = 0.
-displacement_y = 0.
 lines = []
 fig, ax = plt.subplots()
 ax.plot(radius*np.cos(theta),radius*np.sin(theta), c="black")
@@ -46,9 +44,7 @@ ax.set_title("Student picker")
 plt.axis('off')
 while displacement < radius:
 	new_point = get_new_point(point, mu=mu)
-	displacement_x = displacement_x + new_point[0] - point[0]
-	displacement_y = displacement_y + new_point[1] - point[1]
-	displacement = np.sqrt(displacement_x**2 + displacement_y**2)
+	displacement = np.sqrt(new_point[0]**2 + new_point[1]**2)
 	lines.append([point, new_point])
 	point = new_point
 	col = collections.LineCollection(lines)
